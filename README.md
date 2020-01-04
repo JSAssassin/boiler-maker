@@ -58,6 +58,12 @@ echo $SECRET_KEY
 unset SECRET_KEY
 ```
 
+environment variables are set on the terminal that the program is being launched from. If the terminal sesssion ends, the environment variables that were exported goes away too...Therefore when we start a new terminal we need to set the variables again. There are two ways to set up environment variables.
+
+One way is to keep those variables in a file in your computer and you don't commit that file to github instead put it on .gitignore and follow instructions here https://www.npmjs.com/package/dotenv and other way is setting the env variable everytime we open up the terminal.
+
+https://www.npmjs.com/package/dotenv
+
 # Server
 
 ### Logging Middleware
@@ -102,4 +108,34 @@ The sequelize package exports the Sequelize constructor. You use this to create 
 
 # Authentication
 
-```npm install --save express-session passport```
+### Installing session and protecting session secret
+
+npm install --save express-session
+require('dotenv').config() as early as possible in your application, require and configure dotenv.
+
+Then make a .env file and store the session secret, client secret, client_id and database url in it.
+
+Never commit the .env file, so we need to put it inside .gitignore.
+
+### Session Store (Optional)
+
+Right now, we're storing our session information in memory, which means it will only live for the life of our server. This is fine for testing, but a production app could be making new deploys several times a day, so this could be disruptive.
+
+connect-session-sequelize allows us to store session information in our postgres database, so we can restart or redeploy our server without worrying about interrupting logged-in-users.
+
+### Installing passport and initializing it
+npm install --save passport
+We need to initialize passport so that it will consume our req.session object, and attach the user to the request object. Put the following after the session middleware.
+
+```const passport = require('passport');
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+```
+
+### Serialize and Deserialize user
+
+Remember that serialization is usually only done once per session (after we invoke req.login, so that passport knows how to remember the user in our session store. Generally, we use the user's id.
+
+Deserialization runs with every subsequent request that contains a serialized user on the session - passport gets the key that we used to serialize the user, and uses this to re-obtain the user from our database.
