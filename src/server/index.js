@@ -1,7 +1,7 @@
 require('dotenv').config();
 
 const app = require('./app');
-const db = require('./models');
+const { db } = require('./models');
 
 const PORT = 1337;
 

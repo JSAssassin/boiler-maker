@@ -139,3 +139,19 @@ app.use(passport.session());
 Remember that serialization is usually only done once per session (after we invoke req.login, so that passport knows how to remember the user in our session store. Generally, we use the user's id.
 
 Deserialization runs with every subsequent request that contains a serialized user on the session - passport gets the key that we used to serialize the user, and uses this to re-obtain the user from our database.
+
+### Encrypt Passwords
+
+Salting and hashing is used using node's built-in crypto module.
+Then add Login, SignUp, Log Out and Get Me routes to express.
+
+
+### OAuth2
+
+```
+npm install --save passport passport-google-oauth
+
+```
+
+We'll need to register ourselves with Google and obtain a client ID and a client secret. You can do this from the [Google Cloud Console!](https://console.cloud.google.com/)
+follow instructions from OAuth implementation in Login / Auther Projects
