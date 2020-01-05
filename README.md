@@ -155,3 +155,33 @@ npm install --save passport passport-google-oauth
 
 We'll need to register ourselves with Google and obtain a client ID and a client secret. You can do this from the [Google Cloud Console!](https://console.cloud.google.com/)
 follow instructions from OAuth implementation in Login / Auther Projects
+
+# Testing
+
+```
+npm install --save-dev mocha chai
+
+```
+Mocha is your test "framework" - it provides you with functions like describe and it. Chai is an "assertion" library - it provides you with functions like expect, should, and assert. They are in two separate libraries because neither one of them depends upon or assumes that you are using the other. You could use Mocha with any assertion library, and you could use Chai with any test framework.
+
+### Testing Server
+For our Express routes, we'll also want to avail ourselves of supertest - remember that supertest is an abstraction for testing HTTP requests: ``` npm install --save-dev supertest ```
+
+### Testing Client
+
+
+
+the enzyme library, provides a browserless abstraction for testing React components: ``` npm install --save-dev enzyme ```
+Also install an additional dev dependency: react-addons-test-utils or react-test-renderer—based on your current react version. [Learn More](https://github.com/airbnb/enzyme#installation)
+
+These libraries are the bare minimum we need to get off the ground with testing. However, here's a list of some other handy libraries that may come in handy:
+
+sinon - provides spies, stubs and mocks
+chai-as-promised - extends chai with assertions specific to promises
+chai-things - extends chai with helpful assertions specific to arrays
+sinon-as-promised - extends sinon with sugar for promises
+chai-enzyme - extends chai with some convenience functions for working with enzyme
+
+[Learn More](https://www.chaijs.com/plugins/)
+
+Write a test script in your package.json so that you can simply say npm test to execute your tests. This script will run the mocha command for any spec files in your project. You should also npm install --save-dev babel-register so that you can run your specs through the babel compiler on the fly (you'll need to add the --compilers flag like so: --compilers js:babel-register).
