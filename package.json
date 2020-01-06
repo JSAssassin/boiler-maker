@@ -8,7 +8,10 @@
     "server": "nodemon src/server/index.js",
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "test": "mocha ./tests/*.spec.js --require @babel/register",
-    "test:watch": "mocha ./tests/*.spec.js --require @babel/register --watch"
+    "test:watch": "npm run test -- --watch",
+    "lint": "eslint ./ --ignore-path .gitignore",
+    "lint-fix": "npm run lint -- --fix",
+    "prettify": "prettier --write \"**/*.{js,jsx,json,css,scss,md}\""
   },
   "author": "",
   "license": "ISC",
@@ -23,15 +26,21 @@
     "css-loader": "^3.4.0",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",
+    "eslint": "^6.8.0",
+    "eslint-config-fullstack": "^6.0.0",
+    "eslint-config-prettier": "^4.1.0",
+    "eslint-plugin-react": "^7.12.4",
     "html-webpack-plugin": "^3.2.0",
     "mocha": "^7.0.0",
     "nodemon": "^2.0.2",
+    "prettier": "^1.19.1",
     "style-loader": "^1.1.1",
     "webpack": "^4.41.4",
     "webpack-cli": "^3.3.10",
     "webpack-dev-server": "^3.10.1"
   },
   "dependencies": {
+    "babel-eslint": "^10.0.3",
     "connect-session-sequelize": "^6.0.0",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",

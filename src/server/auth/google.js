@@ -1,7 +1,7 @@
-const router = require('express').Router();
-const passport = require('passport');
-const GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
-const { User } = require('../models');
+const router = require("express").Router();
+const passport = require("passport");
+const GoogleStrategy = require("passport-google-oauth").OAuth2Strategy;
+const { User } = require("../models");
 
 let secret = process.env.CLIENT_SECRET;
 let clientId = process.env.CLIENT_ID;
@@ -12,7 +12,7 @@ passport.use(
     {
       clientID: clientId,
       clientSecret: secret,
-      callbackURL: 'http://localhost:8080/auth/google/verify'
+      callbackURL: "http://localhost:8080/auth/google/verify"
     },
     (token, refreshToken, profile, done) => {
       const info = {
@@ -32,12 +32,12 @@ passport.use(
 );
 
 // Google authentication and login
-router.get('/', passport.authenticate('google', { scope: 'email' }));
+router.get("/", passport.authenticate("google", { scope: "email" }));
 
 // handle the callback after Google has authenticated the user
 router.get(
-  '/verify',
-  passport.authenticate('google', { failureRedirect: '/login' }),
+  "/verify",
+  passport.authenticate("google", { failureRedirect: "/login" }),
   (req, res) => {
     res.redirect(`/users/${req.user.id}`);
   }

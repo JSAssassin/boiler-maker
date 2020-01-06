@@ -1,7 +1,7 @@
-'use strict';
+"use strict";
 
-const db = require('./db');
-const User = require('./User');
+const db = require("./db");
+const User = require("./User");
 
 //require models here and
 //set associations

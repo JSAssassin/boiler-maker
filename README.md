@@ -1,9 +1,11 @@
 # Resources
+
 1. [Async Vs Defer](https://flaviocopes.com/javascript-async-defer/#the-position-matters) for loading bundle.js in the head
 2. [http Server ](https://www.npmjs.com/package/http-server) will serve all the static files as it is without making the bundle.js. (For development only)
 3. [webpack-dev server](https://github.com/webpack/webpack-dev-server/blob/master/README.md) creates the bundle and serves it with index.html file. (For development only)
 
 # REACT
+
 Note : --save-dev is used for modules used in development of the application,not required while running it in production envionment --save is used to add it in package.json and it is required for running of the application
 
 ## Dev Dependencies
@@ -16,19 +18,17 @@ Babel is a toolchain that is mainly used to convert ECMAScript 2015+ code into a
 
 https://github.com/babel/babel-loader
 
-
 [Concurrently](https://github.com/kimmobrunfeldt/concurrently) is used to run multiple commands concurrently. I am using it to run the webpack dev server and the backend node server concurrently in the development environment.
-
 
 You can create bundle js files when you are ready to release ----> using the npx webpack command.
 
 ## Regular Dependencies
 
-**react-dom This package serves as the entry point to the DOM and server renderers for React. It is intended to be paired with the generic React package, which is shipped as react to npm.
+\*\*react-dom This package serves as the entry point to the DOM and server renderers for React. It is intended to be paired with the generic React package, which is shipped as react to npm.
 
-**react-router-dom - DOM bindings for React Router.
+\*\*react-router-dom - DOM bindings for React Router.
 
-### Note :  .babelrc file tells babel how to parse our code.
+### Note : .babelrc file tells babel how to parse our code.
 
 # REDUX
 
@@ -40,9 +40,9 @@ webpack can do more stuff - it can build your css files into a single css file. 
 
 # Environment
 
- In the browser environment, this generally refers to the window object and anything attached to window. In the Node environment, this refers to objects like process and global.
+In the browser environment, this generally refers to the window object and anything attached to window. In the Node environment, this refers to objects like process and global.
 
- To get a list of all of your environment variables, you can type the printenv command.
+To get a list of all of your environment variables, you can type the printenv command.
 
 Environment variables are accessible to Node as well! To see how this works, start a Node repl by running the node command without any arguments.
 
@@ -77,8 +77,7 @@ app.use(morgan('dev'));
 
 Once your browser gets your index.html, it often needs to request static assets from your server - these include javascript files, css files, and images. Many developers organize this content by putting it into a public folder.
 
-app.use(express.static(path.join(__dirname, './path/to/static/assets')));
-
+app.use(express.static(path.join(\_\_dirname, './path/to/static/assets')));
 
 ### Parsing Middleware
 
@@ -124,6 +123,7 @@ Right now, we're storing our session information in memory, which means it will 
 connect-session-sequelize allows us to store session information in our postgres database, so we can restart or redeploy our server without worrying about interrupting logged-in-users.
 
 ### Installing passport and initializing it
+
 npm install --save passport
 We need to initialize passport so that it will consume our req.session object, and attach the user to the request object. Put the following after the session middleware.
 
@@ -145,7 +145,6 @@ Deserialization runs with every subsequent request that contains a serialized us
 Salting and hashing is used using node's built-in crypto module.
 Then add Login, SignUp, Log Out and Get Me routes to express.
 
-
 ### OAuth2
 
 ```
@@ -162,16 +161,16 @@ follow instructions from OAuth implementation in Login / Auther Projects
 npm install --save-dev mocha chai
 
 ```
+
 Mocha is your test "framework" - it provides you with functions like describe and it. Chai is an "assertion" library - it provides you with functions like expect, should, and assert. They are in two separate libraries because neither one of them depends upon or assumes that you are using the other. You could use Mocha with any assertion library, and you could use Chai with any test framework.
 
 ### Testing Server
-For our Express routes, we'll also want to avail ourselves of supertest - remember that supertest is an abstraction for testing HTTP requests: ``` npm install --save-dev supertest ```
+
+For our Express routes, we'll also want to avail ourselves of supertest - remember that supertest is an abstraction for testing HTTP requests: `npm install --save-dev supertest`
 
 ### Testing Client
 
-
-
-the enzyme library, provides a browserless abstraction for testing React components: ``` npm install --save-dev enzyme ```
+the enzyme library, provides a browserless abstraction for testing React components: `npm install --save-dev enzyme`
 Also install an additional dev dependency: react-addons-test-utils or react-test-renderer—based on your current react version. [Learn More](https://github.com/airbnb/enzyme#installation)
 
 These libraries are the bare minimum we need to get off the ground with testing. However, here's a list of some other handy libraries that may come in handy:
@@ -185,3 +184,10 @@ chai-enzyme - extends chai with some convenience functions for working with enzy
 [Learn More](https://www.chaijs.com/plugins/)
 
 Write a test script in your package.json so that you can simply say npm test to execute your tests. This script will run the mocha command for any spec files in your project. You should also npm install --save-dev babel-register so that you can run your specs through the babel compiler on the fly (you'll need to add the --compilers flag like so: --compilers js:babel-register).
+
+**\*\*** Inside scripts in the package.json file add
+`{ "test": "mocha ./tests/*.spec.js --require @babel/register", "test:watch": "mocha ./tests/*.spec.js --require @babel/register --watch" }`
+
+test will run mocha, it will find for the folder tests and run any file inside it that ends with .spec.js and then @babel/register is required to run JSX that is used in the front end.
+
+test:watch will do the same thing as nodemon but for the tests. It will rerun the tests everytime there is a change in the tests.

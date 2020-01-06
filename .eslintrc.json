@@ -1,12 +1,14 @@
 {
+  "root": true,
   "parserOptions": {
-      "ecmaVersion": 6,
-      "sourceType": "module",
-      "ecmaFeatures": {
-          "jsx": true
-      }
+    "ecmaVersion": 6,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
   },
   "rules": {
-      "semi": "error"
-  }
+    "semi": "error"
+  },
+  "extends": ["fullstack", "prettier", "prettier/react"]
 }
