@@ -16,7 +16,7 @@ const dbStore = new SequelizeStore({ db: db });
 dbStore.sync();
 
 app.use(morgan("dev"));
-app.use(express.static(path.join(__dirname, "../../public")));
+app.use(express.static(path.join(__dirname, "../../../public")));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -40,7 +40,7 @@ app.use("/auth", require("../auth"));
 
 //Because we generally want to build single-page applications (or SPAs), our server should send its index.html for any requests that don't match one of our API routes.This should come after all of the routes in our server entry file!
 app.get("*", function(req, res) {
-  res.sendFile(path.join(__dirname, "../../public/index.html"));
+  res.sendFile(path.join(__dirname, "../../../public/index.html"));
 });
 
 //Make sure this is at the very end of your server entry file!
