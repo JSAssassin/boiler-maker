@@ -18,9 +18,6 @@ Babel is a toolchain that is mainly used to convert ECMAScript 2015+ code into a
 
 https://github.com/babel/babel-loader
 
-[Concurrently](https://github.com/kimmobrunfeldt/concurrently) is used to run multiple commands concurrently. I am using it to run the webpack dev server and the backend node server concurrently in the development environment.
-
-You can create bundle js files when you are ready to release ----> using the npx webpack command.
 
 ## Regular Dependencies
 
